@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemaking Labs Inc. - Software & App Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --off-black: #1a1a1a;
+            --gray: #666666;
+            --light-gray: #e5e5e5;
+            --white: #ffffff;
+            --accent: #0066ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        header {
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+        
+        .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: var(--gray);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+        
+        section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.6s; }
+        section:nth-child(2) { animation-delay: 0.8s; }
+        section:nth-child(3) { animation-delay: 1s; }
+        
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            max-width: 65ch;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .service-item {
+            padding: 2rem;
+            background-color: #fafafa;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--accent);
+            transition: height 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .service-item:hover::before {
+            height: 100%;
+        }
+        
+        .service-item h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        
+        .service-item p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--gray);
+        }
+        
+        .contact-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 2.5rem;
+            background-color: #fafafa;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .contact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .contact-value {
+            font-size: 1.05rem;
+            color: var(--black);
+        }
+        
+        .contact-value a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .contact-value a:hover {
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 5rem 1.5rem 4rem;
+            }
+            
+            main {
+                padding: 3rem 1.5rem 4rem;
+            }
+            
+            section {
+                margin-bottom: 4rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Homemaking Labs Inc.</h1>
+        <p class="tagline">Software & App Development</p>
+    </header>
+    
+    <main>
+        <section>
+            <h2>About Us</h2>
+            <p>
+                Homemaking Labs Inc. is a software and application development company dedicated to creating 
+                innovative solutions that enhance everyday experiences. We specialize in building reliable, 
+                user-centered applications that solve real-world problems.
+            </p>
+            <p>
+                Our team combines technical expertise with creative problem-solving to deliver high-quality 
+                software products across various platforms and industries.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Our Services</h2>
+            <p>We offer comprehensive software development services across multiple platforms.</p>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Mobile Development</h3>
+                    <p>iOS & Android applications</p>
+                </div>
+                <div class="service-item">
+                    <h3>Web Applications</h3>
+                    <p>Modern, responsive web apps</p>
+                </div>
+                <div class="service-item">
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored software development</p>
+                </div>
+                <div class="service-item">
+                    <h3>Consulting</h3>
+                    <p>Strategy & technical guidance</p>
+                </div>
+                <div class="service-item">
+                    <h3>Maintenance</h3>
+                    <p>Ongoing support & updates</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-label">Company</span>
+                    <span class="contact-value">Homemaking Labs Inc.</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Industry</span>
+                    <span class="contact-value">Software & App Development</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value"><a href="mailto:contact@homemakinglabs.com">contact@homemakinglabs.com</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Business Inquiries</span>
+                    <span class="contact-value"><a href="mailto:info@homemakinglabs.com">info@homemakinglabs.com</a></span>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.95rem;">
+                For business inquiries, partnerships, or support requests, please reach out via email. 
+                We respond to all inquiries within 1-2 business days.
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Homemaking Labs Inc. All rights reserved.</p>
+    </footer>
+</body>
+</html>
